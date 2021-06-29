@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import ManagerSignatureEditor from "./Component/Settings/ManagerSignatureEditor";
+import ManagerSignatureEditor from "./Component/Settings/ManagerSignatureEditor/ManagerSignatureEditor";
 
 function App() {
   return (

@@ -1,8 +1,7 @@
-import React, {useState} from "react";
-import {Button, Form} from "react-bootstrap";
-import { Formik } from "formik";
-import * as yup from 'yup';
+import React from "react";
+import {Button, Col, Form} from "react-bootstrap";
 import * as randomKey from 'randomkey'
+import ObjectUtils from "../../../../Utils/ObjectUtils";
 
 class ManagerSignatureForm extends React.Component
 {
@@ -22,51 +21,53 @@ class ManagerSignatureForm extends React.Component
             },
             'variables' : {
                 'code1': 'name',
-                'code2' : 'name2'
+                'code2' : 'name2',
+                'code3': 'name'
             },
-            validated: false
+            onChange: props.onChange
         };
     }
 
     render() {
         const { variables } = this.state;
-
-        const schema = yup.object().shape(
-            {
-               'code1': yup.string().required(),
-               'code2': yup.string().required()
-            }
-        );
+        const variablePairs = ObjectUtils.maikePairs(variables);
+        console.log(variablePairs);
 
         return (
             <Form
                 noValidate
-                onSubmit={handleSubmit}
+                className="m-lg-5"
+                onChange={this.props.onChange}
             >
                 {
-                    Object.keys(variables).map( (key) =>
-                        (
-                            [
-                                <Form.Group key={ randomKey(10) }>
-                                    <Form.Label>{variables[key]}</Form.Label>
+                    variablePairs.map( (variablePair) =>
+                    (
+                        <div className="row" key={ randomKey(10)}>
+                        {
+                            Object.keys(variablePair).map( key =>
+                            (
+                                <Form.Group as={Col} key={ randomKey(10) } className="col-sm-6">
+                                    <Form.Label className="mt-2">{variables[key]}</Form.Label>
                                     <Form.Control
                                         type="text"
                                         name={key}
-                                        value={values[key]}
-                                        onChange={handleChange}
-                                        isInvalid={!!errors[key]}
                                     />
                                     <Form.Control.Feedback>
-                                        {errors[key]}
+                                        test
                                     </Form.Control.Feedback>
                                 </Form.Group>
-                            ]
-                        )
-                    )
+                            ))
+                        }
+                        </div>
+                    ))
                 }
-                <Button type="submit">Submit form</Button>
+                <Button type="submit" className="mt-4 float-lg-end">Submit form</Button>
             </Form>
         )
+    }
+
+    _maikePairs(object) {
+
     }
 }
 
