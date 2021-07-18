@@ -5,8 +5,7 @@ import ManagerSignatureEditor from "./Component/Settings/ManagerSignatureEditor/
 function App() {
   return (
   <div className="app-container mt-5">
-    <ManagerSignatureEditor>
-    </ManagerSignatureEditor>
+    <ManagerSignatureEditor/>
   </div>
   );
 }

@@ -1,0 +1,10 @@
+.mangerSignatureForm {
+    margin-left: 45px;
+    margin-top: 20px;
+}
+
+.photoPreview {
+    display: block;
+    width: 100px;
+    height: 100px;
+}
